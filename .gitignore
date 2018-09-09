@@ -4,6 +4,9 @@ gradle/*
 bin/*
 .settings/*
 .vscode/*
+.gradle/*
+.idea/*
 
 .classpath
 .project
+springRestSample.iml
