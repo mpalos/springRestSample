@@ -1,0 +1,55 @@
+group 'testes.springRestSample'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext {
+        springBootVersion = '2.0.3.RELEASE'
+        jUnitVersion = '4.12'
+        feignVersion = '9.5.1'
+        lombokVersion = '1.16.16'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+
+bootJar {
+    baseName = 'spring-rest-sample'
+    version =  '0.1.0'
+}
+
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+
+    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion)
+
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+
+    compile group: 'io.github.openfeign', name: 'feign-core', version: feignVersion
+    compile group: 'io.github.openfeign', name: 'feign-slf4j', version: feignVersion
+    compile group: 'io.github.openfeign', name: 'feign-httpclient', version: feignVersion
+
+
+    testCompile(group: 'junit', name: 'junit', version: jUnitVersion)
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
